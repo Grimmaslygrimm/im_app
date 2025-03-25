@@ -6,6 +6,7 @@ import { createUserValidationSchema } from "../utils/profile/userValidationSchem
 
 const router = Router();
 
+//initial create user handler
 router.post("/api/createUser",
     checkSchema(createUserValidationSchema),
     async (request, response) => {
@@ -28,6 +29,7 @@ router.post("/api/createUser",
     }
 });
 
+//Get the user asked for in the request
 router.get('/api/user/:username', async (request, response) => {
     const { username } = request.params;
     const findUser = await User.findOne({ username });

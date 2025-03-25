@@ -5,6 +5,7 @@ import session from "express-session";
 import mongoose from "mongoose";
 import passport from "passport";
 import MongoStore from "connect-mongo";
+import cors from "cors";
 
 
 const app = express();
@@ -13,6 +14,12 @@ mongoose.connect('mongodb://localhost:27017/MessagePro')
     .then(() => console.log("Connected to Database"))
     .catch((err) => console.log(`error: ${err}`));
 
+app.use(cors(
+    {
+        origin: "http://localhost:3000",
+        credentials: true
+    }
+));
 app.use(express.json());
 app.use(cookieParser('secret'));
 app.use(session(
